@@ -17,9 +17,9 @@ namespace TabloidCLI.Models
             get
             {
                 return 
-                     @$"Journal Title - {Title} 
-                     Date Created - {CreateDateTime} 
-                     Journal Content - {Content}";
+@$"Journal Title - {Title} 
+Date Created - {CreateDateTime} 
+Journal Content - {Content}";
             }
         }
 
