@@ -12,17 +12,17 @@ namespace TabloidCLI.Models
         public DateTime CreateDateTime { get; set; }
         
 
-        public string TitleInfo
+        public string JournalInfo
         {
             get
             {
-                return $"{Title}";
+                return $"{Title} {CreateDateTime} {Content}";
             }
         }
 
         public override string ToString()
         {
-            return TitleInfo;
+            return JournalInfo;
         }
     }
 }

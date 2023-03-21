@@ -21,7 +21,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Journal Menu");
             Console.WriteLine(" 1) List Journals");
-            Console.WriteLine(" 2) Journal Details");
+      
             Console.WriteLine(" 3) Add Journal");
             Console.WriteLine(" 4) Edit Journal");
             Console.WriteLine(" 5) Remove Journal");
@@ -34,16 +34,16 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     List();
                     return this;
-                case "2":
-                    Journal journal = Choose();
-                    if (journal == null)
-                    {
-                        return this;
-                    }
-                    else
-                    {
-                        return new JournalDetailManager(this, _connectionString, journal.Id);
-                    }
+                //case "2":
+                //    Journal journal = Choose();
+                //    if (journal == null)
+                //    {
+                //        return this;
+                //    }
+                //    else
+                //    {
+                //        return new JournalDetailManager(this, _connectionString, journal.Id);
+                //    }
                 case "3":
                     Add();
                     return this;
@@ -84,7 +84,7 @@ namespace TabloidCLI.UserInterfaceManagers
             for (int i = 0; i < journals.Count; i++)
             {
                 Journal journal = journals[i];
-                Console.WriteLine($" {i + 1}) {journal.FullName}");
+                Console.WriteLine($" {i + 1}) {journal.Title}");
             }
             Console.Write("> ");
 
@@ -106,14 +106,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Journal");
             Journal journal = new Journal();
 
-            Console.Write("First Name: ");
-            journal.FirstName = Console.ReadLine();
+            Console.Write("Title: ");
+            journal.Title = Console.ReadLine();
 
-            Console.Write("Last Name: ");
-            journal.LastName = Console.ReadLine();
+            Console.Write("Content: ");
+            journal.Content = Console.ReadLine();
 
-            Console.Write("Bio: ");
-            journal.Bio = Console.ReadLine();
+            //Console.Write("Bio: ");
+            //journal.CreateDateTime = Console.ReadLine();
 
             _journalRepository.Insert(journal);
         }
@@ -128,22 +128,22 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine();
             Console.Write("New first name (blank to leave unchanged: ");
-            string firstName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(firstName))
+            string title = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(title))
             {
-                journalToEdit.FirstName = firstName;
+                journalToEdit.Title = title;
             }
             Console.Write("New last name (blank to leave unchanged: ");
             string lastName = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(lastName))
             {
-                journalToEdit.LastName = lastName;
+                journalToEdit.Content = lastName;
             }
-            Console.Write("New bio (blank to leave unchanged: ");
+            Console.Write("New content (blank to leave unchanged: ");
             string bio = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(bio))
             {
-                journalToEdit.Bio = bio;
+                journalToEdit.Content = bio;
             }
 
             _journalRepository.Update(journalToEdit);
