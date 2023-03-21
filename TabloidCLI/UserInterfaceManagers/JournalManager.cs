@@ -21,7 +21,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Journal Menu");
             Console.WriteLine(" 1) List Journals");
-      
+
             Console.WriteLine(" 3) Add Journal");
             Console.WriteLine(" 4) Edit Journal");
             Console.WriteLine(" 5) Remove Journal");
@@ -44,15 +44,15 @@ namespace TabloidCLI.UserInterfaceManagers
                 //    {
                 //        return new JournalDetailManager(this, _connectionString, journal.Id);
                 //    }
-                case "3":
-                    Add();
-                    return this;
-                case "4":
-                    Edit();
-                    return this;
-                case "5":
-                    Remove();
-                    return this;
+                //case "3":
+                //    Add();
+                //    return this;
+                //case "4":
+                //    Edit();
+                //    return this;
+                //case "5":
+                //    Remove();
+                //    return this;
                 case "0":
                     return _parentUI;
                 default:
@@ -70,93 +70,94 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private Journal Choose(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose an Journal:";
-            }
+        //        private Journal Choose(string prompt = null)
+        //        {
+        //            if (prompt == null)
+        //            {
+        //                prompt = "Please choose an Journal:";
+        //            }
 
-            Console.WriteLine(prompt);
+        //            Console.WriteLine(prompt);
 
-            List<Journal> journals = _journalRepository.GetAll();
+        //            List<Journal> journals = _journalRepository.GetAll();
 
-            for (int i = 0; i < journals.Count; i++)
-            {
-                Journal journal = journals[i];
-                Console.WriteLine($" {i + 1}) {journal.Title}");
-            }
-            Console.Write("> ");
+        //            for (int i = 0; i < journals.Count; i++)
+        //            {
+        //                Journal journal = journals[i];
+        //                Console.WriteLine($" {i + 1}) {journal.Title}");
+        //            }
+        //            Console.Write("> ");
 
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return journals[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
-        }
+        //            string input = Console.ReadLine();
+        //            try
+        //            {
+        //                int choice = int.Parse(input);
+        //                return journals[choice - 1];
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine("Invalid Selection");
+        //                return null;
+        //            }
+        //        }
 
-        private void Add()
-        {
-            Console.WriteLine("New Journal");
-            Journal journal = new Journal();
+        //        private void Add()
+        //        {
+        //            Console.WriteLine("New Journal");
+        //            Journal journal = new Journal();
 
-            Console.Write("Title: ");
-            journal.Title = Console.ReadLine();
+        //            Console.Write("Title: ");
+        //            journal.Title = Console.ReadLine();
 
-            Console.Write("Content: ");
-            journal.Content = Console.ReadLine();
+        //            Console.Write("Content: ");
+        //            journal.Content = Console.ReadLine();
 
-            //Console.Write("Bio: ");
-            //journal.CreateDateTime = Console.ReadLine();
+        //            //Console.Write("Bio: ");
+        //            //journal.CreateDateTime = Console.ReadLine();
 
-            _journalRepository.Insert(journal);
-        }
+        //            _journalRepository.Insert(journal);
+        //        }
 
-        private void Edit()
-        {
-            Journal journalToEdit = Choose("Which journal would you like to edit?");
-            if (journalToEdit == null)
-            {
-                return;
-            }
+        //        private void Edit()
+        //        {
+        //            Journal journalToEdit = Choose("Which journal would you like to edit?");
+        //            if (journalToEdit == null)
+        //            {
+        //                return;
+        //            }
 
-            Console.WriteLine();
-            Console.Write("New first name (blank to leave unchanged: ");
-            string title = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                journalToEdit.Title = title;
-            }
-            Console.Write("New last name (blank to leave unchanged: ");
-            string lastName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(lastName))
-            {
-                journalToEdit.Content = lastName;
-            }
-            Console.Write("New content (blank to leave unchanged: ");
-            string bio = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(bio))
-            {
-                journalToEdit.Content = bio;
-            }
+        //            Console.WriteLine();
+        //            Console.Write("New first name (blank to leave unchanged: ");
+        //            string title = Console.ReadLine();
+        //            if (!string.IsNullOrWhiteSpace(title))
+        //            {
+        //                journalToEdit.Title = title;
+        //            }
+        //            Console.Write("New last name (blank to leave unchanged: ");
+        //            string lastName = Console.ReadLine();
+        //            if (!string.IsNullOrWhiteSpace(lastName))
+        //            {
+        //                journalToEdit.Content = content;
+        //            }
+        //            Console.Write("New content (blank to leave unchanged: ");
+        //            CreateDateTime = Console.ReadLine();
+        //            if (!string.IsNullOrWhiteSpace(bio))
+        //            {
+        //                journalToEdit.CreateDateTime = bio;
+        //            }
 
-            _journalRepository.Update(journalToEdit);
-        }
+        //            _journalRepository.Update(journalToEdit);
+        //        }
 
-        private void Remove()
-        {
-            Journal journalToDelete = Choose("Which journal would you like to remove?");
-            if (journalToDelete != null)
-            {
-                _journalRepository.Delete(journalToDelete.Id);
-            }
-        }
+        //        private void Remove()
+        //        {
+        //            Journal journalToDelete = Choose("Which journal would you like to remove?");
+        //            if (journalToDelete != null)
+        //            {
+        //                _journalRepository.Delete(journalToDelete.Id);
+        //            }
+        //        }
     }
 }
+
 
