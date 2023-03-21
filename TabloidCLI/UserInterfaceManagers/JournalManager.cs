@@ -21,7 +21,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Journal Menu");
             Console.WriteLine(" 1) List Journals");
-      
+
             Console.WriteLine(" 3) Add Journal");
             Console.WriteLine(" 4) Edit Journal");
             Console.WriteLine(" 5) Remove Journal");
@@ -70,47 +70,47 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private Journal Choose(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose an Journal:";
-            }
+        //        private Journal Choose(string prompt = null)
+        //        {
+        //            if (prompt == null)
+        //            {
+        //                prompt = "Please choose an Journal:";
+        //            }
 
-            Console.WriteLine(prompt);
+        //            Console.WriteLine(prompt);
 
-            List<Journal> journals = _journalRepository.GetAll();
+        //            List<Journal> journals = _journalRepository.GetAll();
 
-            for (int i = 0; i < journals.Count; i++)
-            {
-                Journal journal = journals[i];
-                Console.WriteLine($" {i + 1}) {journal.Title}");
-            }
-            Console.Write("> ");
+        //            for (int i = 0; i < journals.Count; i++)
+        //            {
+        //                Journal journal = journals[i];
+        //                Console.WriteLine($" {i + 1}) {journal.Title}");
+        //            }
+        //            Console.Write("> ");
 
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return journals[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
-        }
+        //            string input = Console.ReadLine();
+        //            try
+        //            {
+        //                int choice = int.Parse(input);
+        //                return journals[choice - 1];
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine("Invalid Selection");
+        //                return null;
+        //            }
+        //        }
 
-        private void Add()
-        {
-            Console.WriteLine("New Journal");
-            Journal journal = new Journal();
+        //        private void Add()
+        //        {
+        //            Console.WriteLine("New Journal");
+        //            Journal journal = new Journal();
 
-            Console.Write("Title: ");
-            journal.Title = Console.ReadLine();
+        //            Console.Write("Title: ");
+        //            journal.Title = Console.ReadLine();
 
-            Console.Write("Content: ");
-            journal.Content = Console.ReadLine();
+        //            Console.Write("Content: ");
+        //            journal.Content = Console.ReadLine();
 
 
             //journal.CreateDateTime = DateTime.Now;
@@ -159,4 +159,5 @@ namespace TabloidCLI.UserInterfaceManagers
         //}
     }
 }
+
 
