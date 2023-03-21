@@ -47,12 +47,12 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "3":
                     Add();
                     return this;
-                case "4":
-                    Edit();
-                    return this;
-                case "5":
-                    Remove();
-                    return this;
+                //case "4":
+                //    Edit();
+                //    return this;
+                //case "5":
+                //    Remove();
+                //    return this;
                 case "0":
                     return _parentUI;
                 default:
@@ -112,51 +112,51 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Content: ");
             journal.Content = Console.ReadLine();
 
-            //Console.Write("Bio: ");
-            //journal.CreateDateTime = Console.ReadLine();
+
+            //journal.CreateDateTime = DateTime.Now;
 
             _journalRepository.Insert(journal);
         }
 
-        private void Edit()
-        {
-            Journal journalToEdit = Choose("Which journal would you like to edit?");
-            if (journalToEdit == null)
-            {
-                return;
-            }
+        //private void Edit()
+        //{
+        //    Journal journalToEdit = Choose("Which journal would you like to edit?");
+        //    if (journalToEdit == null)
+        //    {
+        //        return;
+        //    }
 
-            Console.WriteLine();
-            Console.Write("New first name (blank to leave unchanged: ");
-            string title = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                journalToEdit.Title = title;
-            }
-            Console.Write("New last name (blank to leave unchanged: ");
-            string lastName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(lastName))
-            {
-                journalToEdit.Content = lastName;
-            }
-            Console.Write("New content (blank to leave unchanged: ");
-            string bio = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(bio))
-            {
-                journalToEdit.Content = bio;
-            }
+        //    Console.WriteLine();
+        //    Console.Write("New first name (blank to leave unchanged: ");
+        //    string title = Console.ReadLine();
+        //    if (!string.IsNullOrWhiteSpace(title))
+        //    {
+        //        journalToEdit.Title = title;
+        //    }
+        //    Console.Write("New last name (blank to leave unchanged: ");
+        //    string lastName = Console.ReadLine();
+        //    if (!string.IsNullOrWhiteSpace(lastName))
+        //    {
+        //        journalToEdit.Content = lastName;
+        //    }
+        //    Console.Write("New content (blank to leave unchanged: ");
+        //    string bio = Console.ReadLine();
+        //    if (!string.IsNullOrWhiteSpace(bio))
+        //    {
+        //        journalToEdit.Content = bio;
+        //    }
 
-            _journalRepository.Update(journalToEdit);
-        }
+        //    _journalRepository.Update(journalToEdit);
+        //}
 
-        private void Remove()
-        {
-            Journal journalToDelete = Choose("Which journal would you like to remove?");
-            if (journalToDelete != null)
-            {
-                _journalRepository.Delete(journalToDelete.Id);
-            }
-        }
+        //private void Remove()
+        //{
+        //    Journal journalToDelete = Choose("Which journal would you like to remove?");
+        //    if (journalToDelete != null)
+        //    {
+        //        _journalRepository.Delete(journalToDelete.Id);
+        //    }
+        //}
     }
 }
 
