@@ -1,0 +1,1 @@
+﻿SELECT id,Title,Content,CreateDateTime FROM Journal
