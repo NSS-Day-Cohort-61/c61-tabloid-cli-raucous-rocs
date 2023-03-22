@@ -44,9 +44,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 //    {
                 //        return new JournalDetailManager(this, _connectionString, journal.Id);
                 //    }
-                //case "3":
-                //    Add();
-                //    return this;
+                case "3":
+                    Add();
+                    return this;
                 //case "4":
                 //    Edit();
                 //    return this;
@@ -63,12 +63,15 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
+            Console.WriteLine("All Journals:");
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
                 Console.WriteLine(journal);
             }
         }
+
+        // Don't think we need choose below
 
         //        private Journal Choose(string prompt = null)
         //        {
@@ -101,22 +104,19 @@ namespace TabloidCLI.UserInterfaceManagers
         //            }
         //        }
 
-        //        private void Add()
-        //        {
-        //            Console.WriteLine("New Journal");
-        //            Journal journal = new Journal();
+        private void Add()
+        {
+            Console.WriteLine("New Journal");
+            Journal journal = new Journal();
 
-        //            Console.Write("Title: ");
-        //            journal.Title = Console.ReadLine();
+            Console.Write("Title: ");
+            journal.Title = Console.ReadLine();
 
-        //            Console.Write("Content: ");
-        //            journal.Content = Console.ReadLine();
+            Console.Write("Content: ");
+            journal.Content = Console.ReadLine();
 
-        //            //Console.Write("Bio: ");
-        //            //journal.CreateDateTime = Console.ReadLine();
-
-        //            _journalRepository.Insert(journal);
-        //        }
+            _journalRepository.Insert(journal);
+        }
 
         //        private void Edit()
         //        {
