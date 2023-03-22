@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 
 namespace TabloidCLI.Models
@@ -12,5 +13,20 @@ namespace TabloidCLI.Models
         public DateTime PublishDateTime { get; set; }
         public Author Author { get; set; }
         public Blog Blog { get; set; }
+        public List<Tag> Tags { get; set; } = new List<Tag>();
+        public string PostInfo
+        {
+            get
+            {
+                return
+                    @$"Post Title - {Title} 
+                    URL - {Url}";
+            }
+        }
+
+        public override string ToString()
+        {
+            return PostInfo;
+        }
     }
 }
