@@ -50,9 +50,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "4":
                     Edit();
                     return this;
-                //case "5":
-                //    Remove();
-                //    return this;
+                case "5":
+                    Remove();
+                    return this;
                 case "0":
                     return _parentUI;
                 default:
@@ -141,14 +141,15 @@ namespace TabloidCLI.UserInterfaceManagers
             _journalRepository.Update(journalToEdit);
         }
 
-        //        private void Remove()
-        //        {
-        //            Journal journalToDelete = Choose("Which journal would you like to remove?");
-        //            if (journalToDelete != null)
-        //            {
-        //                _journalRepository.Delete(journalToDelete.Id);
-        //            }
-        //        }
+        private void Remove()
+        {
+            Journal journalToDelete = Choose("Which journal would you like to remove?");
+            if (journalToDelete != null)
+            {
+                _journalRepository.Delete(journalToDelete.Id);
+                Console.WriteLine("Congrats! You deleted something.");
+            }
+        }
     }
 }
 

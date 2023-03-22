@@ -137,20 +137,20 @@ namespace TabloidCLI
             }
         }
 
-        //        public void Delete(int id)
-        //        {
-        //            using (SqlConnection conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = @"DELETE FROM Journal WHERE id = @id";
-        //                    cmd.Parameters.AddWithValue("@id", id);
+        public void Delete(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Journal WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
 
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         //        public void InsertTag(Journal journal, Tag tag)
         //        {
