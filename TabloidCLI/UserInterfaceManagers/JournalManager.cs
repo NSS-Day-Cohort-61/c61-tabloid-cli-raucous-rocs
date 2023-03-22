@@ -47,9 +47,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "3":
                     Add();
                     return this;
-                //case "4":
-                //    Edit();
-                //    return this;
+                case "4":
+                    Edit();
+                    return this;
                 //case "5":
                 //    Remove();
                 //    return this;
@@ -71,38 +71,36 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        // Don't think we need choose below
+        private Journal Choose(string prompt = null)
+        {
+            if (prompt == null)
+            {
+                prompt = "Please choose an Journal:";
+            }
 
-        //        private Journal Choose(string prompt = null)
-        //        {
-        //            if (prompt == null)
-        //            {
-        //                prompt = "Please choose an Journal:";
-        //            }
+            Console.WriteLine(prompt);
 
-        //            Console.WriteLine(prompt);
+            List<Journal> journals = _journalRepository.GetAll();
 
-        //            List<Journal> journals = _journalRepository.GetAll();
+            for (int i = 0; i < journals.Count; i++)
+            {
+                Journal journal = journals[i];
+                Console.WriteLine($" {i + 1}) {journal.Title}");
+            }
+            Console.Write("> ");
 
-        //            for (int i = 0; i < journals.Count; i++)
-        //            {
-        //                Journal journal = journals[i];
-        //                Console.WriteLine($" {i + 1}) {journal.Title}");
-        //            }
-        //            Console.Write("> ");
-
-        //            string input = Console.ReadLine();
-        //            try
-        //            {
-        //                int choice = int.Parse(input);
-        //                return journals[choice - 1];
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Console.WriteLine("Invalid Selection");
-        //                return null;
-        //            }
-        //        }
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                return journals[choice - 1];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Selection");
+                return null;
+            }
+        }
 
         private void Add()
         {
@@ -118,36 +116,30 @@ namespace TabloidCLI.UserInterfaceManagers
             _journalRepository.Insert(journal);
         }
 
-        //        private void Edit()
-        //        {
-        //            Journal journalToEdit = Choose("Which journal would you like to edit?");
-        //            if (journalToEdit == null)
-        //            {
-        //                return;
-        //            }
+        private void Edit()
+        {
+            Journal journalToEdit = Choose("Which journal would you like to edit?");
+            if (journalToEdit == null)
+            {
+                return;
+            }
 
-        //            Console.WriteLine();
-        //            Console.Write("New first name (blank to leave unchanged: ");
-        //            string title = Console.ReadLine();
-        //            if (!string.IsNullOrWhiteSpace(title))
-        //            {
-        //                journalToEdit.Title = title;
-        //            }
-        //            Console.Write("New last name (blank to leave unchanged: ");
-        //            string lastName = Console.ReadLine();
-        //            if (!string.IsNullOrWhiteSpace(lastName))
-        //            {
-        //                journalToEdit.Content = content;
-        //            }
-        //            Console.Write("New content (blank to leave unchanged: ");
-        //            CreateDateTime = Console.ReadLine();
-        //            if (!string.IsNullOrWhiteSpace(bio))
-        //            {
-        //                journalToEdit.CreateDateTime = bio;
-        //            }
+            Console.WriteLine();
+            Console.Write("New title (blank to leave unchanged): ");
+            string title = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                journalToEdit.Title = title;
+            }
+            Console.Write("New content (blank to leave unchanged): ");
+            string content = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(content))
+            {
+                journalToEdit.Content = content;
+            }
 
-        //            _journalRepository.Update(journalToEdit);
-        //        }
+            _journalRepository.Update(journalToEdit);
+        }
 
         //        private void Remove()
         //        {
