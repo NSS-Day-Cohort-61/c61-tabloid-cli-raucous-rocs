@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TabloidCLI.Models;
 
 namespace TabloidCLI.UserInterfaceManagers
@@ -22,7 +19,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         public IUserInterfaceManager Execute()
         {
-            Console.WriteLine("Journal Menu");
+            Console.WriteLine("Note Menu");
             Console.WriteLine(" 1) List Notes for this post");
             Console.WriteLine(" 2) Add Note for this post");
             Console.WriteLine(" 3) Remove Note for this post");
@@ -33,7 +30,7 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
-                    List();
+                    ListPerPost();
                     return this;
                 case "2":
                     Add();
@@ -48,13 +45,19 @@ namespace TabloidCLI.UserInterfaceManagers
                     return this;
             }
         }
-        private void List()
+
+        private void ListPerPost()
         {
+            List<Note> allNotes = _noteRepository.GetAll();
+            foreach (Note note in allNotes)
+            {
+                if note.Post 
+            }
             Console.WriteLine("All Notes for this post:");
             List<Note> notes = _noteRepository.GetByPost();
-            foreach (Journal journal in journals)
+            foreach (Note note in notes)
             {
-                Console.WriteLine(journal);
+                Console.WriteLine(note);
             }
         }
     }
