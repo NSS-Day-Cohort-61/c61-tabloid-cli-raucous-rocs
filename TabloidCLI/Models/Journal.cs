@@ -10,13 +10,16 @@ namespace TabloidCLI.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime CreateDateTime { get; set; }
-        
+
 
         public string JournalInfo
         {
             get
             {
-                return $"{Title} {CreateDateTime} {Content}";
+                return
+                    @$"Journal Title - {Title} 
+                    Date Created - {CreateDateTime} 
+                    Journal Content - {Content}";
             }
         }
 
