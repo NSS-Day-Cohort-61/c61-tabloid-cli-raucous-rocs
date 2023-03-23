@@ -45,58 +45,57 @@ namespace TabloidCLI
             }
         }
 
-        //public Blog Get(int id)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"SELECT a.Id AS BlogId,
-        //                                       a.FirstName,
-        //                                       a.LastName,
-        //                                       a.Bio,
-        //                                       t.Id AS TagId,
-        //                                       t.Name
-        //                                  FROM Blog a 
-        //                                       LEFT JOIN BlogTag at on a.Id = at.BlogId
-        //                                       LEFT JOIN Tag t on t.Id = at.TagId
-        //                                 WHERE a.id = @id";
+        public Blog Get(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT a.Id AS BlogId,
+                                               a.Title,
+                                               a.url
+                                             
+                                          FROM Blog a 
+                                         WHERE a.id = @id";
+                                             
+                                              
+                                             
 
-        //            cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
 
-        //            Blog Blog = null;
+                    Blog Blog = null;
 
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //while (reader.Read())
-        //{
-        //    if (Blog == null)
-        //    {
-        //        Blog = new Blog()
-        //        {
-        //            Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
-        //            Title = reader.GetString(reader.GetOrdinal("Title")),
-        //            Url = reader.GetString(reader.GetOrdinal("Url")),
-        //            
-        //        };
-        //    }
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (Blog == null)
+                        {
+                            Blog = new Blog()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                                Title = reader.GetString(reader.GetOrdinal("Title")),
+                                Url = reader.GetString(reader.GetOrdinal("Url")),
 
-        //    if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
-        //    {
-        //        Blog.Add(new Tag()
-        //        {
-        //            Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-        //            Name = reader.GetString(reader.GetOrdinal("Name")),
-        //        });
-        //    }
-        //}
+                            };
+                        }
 
-        //                    reader.Close();
+                        //if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        //{
+                        //    Blog.Add(new Tag()
+                        //    {
+                        //        Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                        //        Name = reader.GetString(reader.GetOrdinal("Name")),
+                        //    });
+                        //}
+                    }
 
-        //                    return Blog;
-        //                }
-        //            }
-        //        }
+                    reader.Close();
+
+                    return Blog;
+                }
+            }
+        }
 
         public void Insert(Blog Blog)
         {
@@ -150,6 +149,11 @@ namespace TabloidCLI
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        internal List<Blog> GetByBlog(int blogId)
+        {
+            throw new NotImplementedException();
         }
 
         //        public void InsertTag(Blog Blog, Tag tag)
