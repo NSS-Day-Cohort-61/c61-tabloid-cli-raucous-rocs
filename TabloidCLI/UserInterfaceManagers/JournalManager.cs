@@ -95,7 +95,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 int choice = int.Parse(input);
                 return journals[choice - 1];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Invalid Selection");
                 return null;
@@ -113,53 +113,6 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Content: ");
             journal.Content = Console.ReadLine();
 
-<<<<<<< HEAD
-
-            //journal.CreateDateTime = DateTime.Now;
-
-            _journalRepository.Insert(journal);
-        }
-
-        //private void Edit()
-        //{
-        //    Journal journalToEdit = Choose("Which journal would you like to edit?");
-        //    if (journalToEdit == null)
-        //    {
-        //        return;
-        //    }
-
-        //    Console.WriteLine();
-        //    Console.Write("New first name (blank to leave unchanged: ");
-        //    string title = Console.ReadLine();
-        //    if (!string.IsNullOrWhiteSpace(title))
-        //    {
-        //        journalToEdit.Title = title;
-        //    }
-        //    Console.Write("New last name (blank to leave unchanged: ");
-        //    string lastName = Console.ReadLine();
-        //    if (!string.IsNullOrWhiteSpace(lastName))
-        //    {
-        //        journalToEdit.Content = lastName;
-        //    }
-        //    Console.Write("New content (blank to leave unchanged: ");
-        //    string bio = Console.ReadLine();
-        //    if (!string.IsNullOrWhiteSpace(bio))
-        //    {
-        //        journalToEdit.Content = bio;
-        //    }
-
-        //    _journalRepository.Update(journalToEdit);
-        //}
-
-        //private void Remove()
-        //{
-        //    Journal journalToDelete = Choose("Which journal would you like to remove?");
-        //    if (journalToDelete != null)
-        //    {
-        //        _journalRepository.Delete(journalToDelete.Id);
-        //    }
-        //}
-=======
             _journalRepository.Insert(journal);
         }
 
@@ -197,7 +150,6 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.WriteLine("Congrats! You deleted something.");
             }
         }
->>>>>>> main
     }
 }
 

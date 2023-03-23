@@ -6,12 +6,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI
 {
-<<<<<<< HEAD
-    public class JournalRepository : DatabaseConnector
-    {
-=======
     public class JournalRepository : DatabaseConnector, IRepository<Journal>    {
->>>>>>> main
         public JournalRepository(string connectionString) : base(connectionString) { }
 
         public List<Journal> GetAll()
@@ -103,68 +98,10 @@ namespace TabloidCLI
                     cmd.CommandText = @"DELETE FROM Journal WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
-<<<<<<< HEAD
-        public void Insert(Journal journal)
-        {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"INSERT INTO Journal (Title, Content, CreateDateTime)
-                                                             VALUES (@title, @content, @createDateTime)";
-                    cmd.Parameters.AddWithValue("@title", journal.Title);
-                    cmd.Parameters.AddWithValue("@content", journal.Content);
-                    cmd.Parameters.AddWithValue("@createDateTime", DateTime.Now);
-
-                    cmd.ExecuteNonQuery();
-                    //                }
-                    //            }
-                    //        }
-
-                    //        public void Update(Journal journal)
-                    //        {
-                    //            using (SqlConnection conn = Connection)
-                    //            {
-                    //                conn.Open();
-                    //                using (SqlCommand cmd = conn.CreateCommand())
-                    //                {
-                    //                    cmd.CommandText = @"UPDATE Journal 
-                    //                                           SET FirstName = @firstName,
-                    //                                               LastName = @lastName,
-                    //                                               bio = @bio
-                    //                                         WHERE id = @id";
-
-                    //                    cmd.Parameters.AddWithValue("@title", journal.Title);
-                    //                    cmd.Parameters.AddWithValue("@content", journal.Content);
-                    //                    cmd.Parameters.AddWithValue("@bio", journal.Bio);
-                    //                    cmd.Parameters.AddWithValue("@id", journal.Id);
-
-                    //                    cmd.ExecuteNonQuery();
-                    //                }
-                    //            }
-                    //        }
-
-                    //        public void Delete(int id)
-                    //        {
-                    //            using (SqlConnection conn = Connection)
-                    //            {
-                    //                conn.Open();
-                    //                using (SqlCommand cmd = conn.CreateCommand())
-                    //                {
-                    //                    cmd.CommandText = @"DELETE FROM Journal WHERE id = @id";
-                    //                    cmd.Parameters.AddWithValue("@id", id);
-
-                    //                    cmd.ExecuteNonQuery();
-                    //                }
-                    //            }
-                    //        }
-=======
                     cmd.ExecuteNonQuery();
                 }
             }
         }
->>>>>>> main
 
                     //        public void InsertTag(Journal journal, Tag tag)
                     //        {
@@ -201,6 +138,5 @@ namespace TabloidCLI
                     //        }
                 }
             }
-        }
-    }
-}
+        
+    
