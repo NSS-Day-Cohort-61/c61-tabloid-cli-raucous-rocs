@@ -9,7 +9,7 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private BlogRepository _blogRepository;
         private string _connectionString;
-
+        
         public BlogManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
@@ -95,7 +95,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 int choice = int.Parse(input);
                 return blogs[choice - 1];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Invalid Selection");
                 return null;

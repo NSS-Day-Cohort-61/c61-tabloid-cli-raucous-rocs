@@ -103,38 +103,40 @@ namespace TabloidCLI
             }
         }
 
-        //        public void InsertTag(Journal journal, Tag tag)
-        //        {
-        //            using (SqlConnection conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = @"INSERT INTO JournalTag (JournalId, TagId)
-        //                                                       VALUES (@journalId, @tagId)";
-        //                    cmd.Parameters.AddWithValue("@journalId", journal.Id);
-        //                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
+                    //        public void InsertTag(Journal journal, Tag tag)
+                    //        {
+                    //            using (SqlConnection conn = Connection)
+                    //            {
+                    //                conn.Open();
+                    //                using (SqlCommand cmd = conn.CreateCommand())
+                    //                {
+                    //                    cmd.CommandText = @"INSERT INTO JournalTag (JournalId, TagId)
+                    //                                                       VALUES (@journalId, @tagId)";
+                    //                    cmd.Parameters.AddWithValue("@journalId", journal.Id);
+                    //                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
+                    //                    cmd.ExecuteNonQuery();
+                    //                }
+                    //            }
+                    //        }
 
-        //        public void DeleteTag(int journalId, int tagId)
-        //        {
-        //            using (SqlConnection conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = @"DELETE FROM JournalTAg 
-        //                                         WHERE JournalId = @journalid AND 
-        //                                               TagId = @tagId";
-        //                    cmd.Parameters.AddWithValue("@journalId", journalId);
-        //                    cmd.Parameters.AddWithValue("@tagId", tagId);
+                    //        public void DeleteTag(int journalId, int tagId)
+                    //        {
+                    //            using (SqlConnection conn = Connection)
+                    //            {
+                    //                conn.Open();
+                    //                using (SqlCommand cmd = conn.CreateCommand())
+                    //                {
+                    //                    cmd.CommandText = @"DELETE FROM JournalTAg 
+                    //                                         WHERE JournalId = @journalid AND 
+                    //                                               TagId = @tagId";
+                    //                    cmd.Parameters.AddWithValue("@journalId", journalId);
+                    //                    cmd.Parameters.AddWithValue("@tagId", tagId);
 
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
-    }
-}
+                    //                    cmd.ExecuteNonQuery();
+                    //                }
+                    //            }
+                    //        }
+                }
+            }
+        
+    
