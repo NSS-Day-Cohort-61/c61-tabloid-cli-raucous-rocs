@@ -52,8 +52,8 @@ namespace TabloidCLI.UserInterfaceManagers
                 //case "3":
                 //    RemoveTag();
                 //    return this;
-                //case "4":
-                //    return new Note manager?
+                case "4":
+                    return new NoteManager(this, _connectionString, post.Id);
                 case "0":
                     return _parentUI;
                 default:
