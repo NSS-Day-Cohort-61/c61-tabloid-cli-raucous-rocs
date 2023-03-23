@@ -151,10 +151,7 @@ namespace TabloidCLI
             }
         }
 
-        internal List<Blog> GetByBlog(int blogId)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         //        public void InsertTag(Blog Blog, Tag tag)
         //        {
