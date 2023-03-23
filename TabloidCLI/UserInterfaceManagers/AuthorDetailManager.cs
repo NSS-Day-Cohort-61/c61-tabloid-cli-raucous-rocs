@@ -39,9 +39,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     View();
                     return this;
-                //case "2":
-                //    ViewBlogPosts();
-                //    return this;
+                case "2":
+                    ViewBlogPosts();
+                    return this;
                 case "3":
                     AddTag();
                     return this;
@@ -65,6 +65,16 @@ namespace TabloidCLI.UserInterfaceManagers
             foreach (Tag tag in author.Tags)
             {
                 Console.WriteLine(" " + tag);
+            }
+            Console.WriteLine();
+        }
+
+        private void ViewBlogPosts()
+        {
+            List<Post> posts = _postRepository.GetAllPerAuthor(_authorId);
+            foreach (Post post in posts)
+            {
+                Console.WriteLine(post);
             }
             Console.WriteLine();
         }
