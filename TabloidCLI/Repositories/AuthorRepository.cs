@@ -98,6 +98,8 @@ namespace TabloidCLI
             }
         }
 
+
+
         public void Insert(Author author)
         {
             using (SqlConnection conn = Connection)
