@@ -39,9 +39,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     View();
                     return this;
-                //case "2":
-                //    ViewBlogDetails();
-                //    return this;
+                case "2":
+                    ListPerBlog();
+                    return this;
                 //case "3":
                 //    AddTag();
                 //    return this;
@@ -69,15 +69,18 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
         }
 
-        //private void ViewBlogDetails()
-        //{
-        //    List<Blog> blogs = _blogRepository.GetByBlog(_blogId);
-        //    foreach (Blog blog in blogs)
-        //    {
-        //        Console.WriteLine(blog);
-        //    }
-        //    Console.WriteLine();
-        //}
+        private void ListPerBlog()
+        {
+
+            Console.WriteLine("All posts for this blog:");
+            Blog blog = _blogRepository.Get(_blogId);
+            int blogId = blog.Id;
+            List<Post> posts = _postRepository.GetAllPerBlog(blogId);
+            foreach (Post post in posts)
+            {
+                Console.WriteLine(post);
+            }
+        }
 
         //private void AddTag()
         //{
