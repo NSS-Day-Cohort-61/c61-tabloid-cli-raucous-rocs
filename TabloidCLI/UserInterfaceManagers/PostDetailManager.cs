@@ -8,7 +8,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
-    internal class PostDetailManager: IUserInterfaceManager
+    internal class PostDetailManager : IUserInterfaceManager
     {
 
         private IUserInterfaceManager _parentUI;
@@ -52,8 +52,8 @@ namespace TabloidCLI.UserInterfaceManagers
                 //case "3":
                 //    RemoveTag();
                 //    return this;
-                //case "4":
-                //    return new Note manager with post Id as argument
+                case "4":
+                    return new NoteManager(this, _connectionString, post.Id);
                 case "0":
                     return _parentUI;
                 default:
