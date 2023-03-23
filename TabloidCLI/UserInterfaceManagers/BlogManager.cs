@@ -9,7 +9,7 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private BlogRepository _blogRepository;
         private string _connectionString;
-
+        
         public BlogManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
@@ -21,7 +21,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Blog Menu");
             Console.WriteLine(" 1) List Blogs");
-
+            Console.WriteLine(" 2) Blog Details");
             Console.WriteLine(" 3) Add Blog");
             Console.WriteLine(" 4) Edit Blog");
             Console.WriteLine(" 5) Remove Blog");
@@ -34,16 +34,16 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     List();
                     return this;
-                //case "2":
-                //    Blog blog = Choose();
-                //    if (blog == null)
-                //    {
-                //        return this;
-                //    }
-                //    else
-                //    {
-                //        return new blogDetailManager(this, _connectionString, Blog.Id);
-                //    }
+                case "2":
+                    Blog blog = Choose();
+                    if (blog == null)
+                    {
+                        return this;
+                    }
+                    else
+                    {
+                        return new BlogDetailManager(this, _connectionString, blog.Id);
+                    }
                 case "3":
                     Add();
                     return this;
@@ -95,7 +95,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 int choice = int.Parse(input);
                 return blogs[choice - 1];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Invalid Selection");
                 return null;
