@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Xml.Linq;
 using Microsoft.Data.SqlClient;
 using TabloidCLI.Models;
 using TabloidCLI.Repositories;
@@ -41,12 +43,58 @@ namespace TabloidCLI
 
         public Tag Get(int id)
         {
+            //using (SqlConnection conn = Connection)
+            //{
+            //    conn.Open();
+            //    using (SqlCommand cmd = conn.CreateCommand())
+            //    {
+            //        cmd.CommandText = @"SELECT t.Name
+
+            //                            FROM Tag t
+            //                                 JOIN PostTag pt ON t.Id = pt.TagId                                             
+            //                                 JOIN AuthorTag at ON t.Id = at.TagId                                             
+            //                                 JOIN BlogTag bt ON t.Id = bt.TagId                                             
+            //                            WHERE t.id = @id"
+            //        ;
+
+
+
+            //        cmd.Parameters.AddWithValue("@id", id);
+
+            //        Tag tag = null;
+
+            //        SqlDataReader reader = cmd.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            tag ??= new Tag()
+            //            {
+            //                Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+            //                Name = reader.GetString(reader.GetOrdinal("FirstName")),
+            //            };
+            //        }
+
+            //        reader.Close();
+
+            //        return tag;
+            //    }
+            //}
             throw new NotImplementedException();
         }
-
         public void Insert(Tag tag)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Tag (Name)
+                                                     VALUES (@name)";
+                    cmd.Parameters.AddWithValue("@name", tag.Name);
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Update(Tag tag)
@@ -58,7 +106,6 @@ namespace TabloidCLI
         {
             throw new NotImplementedException();
         }
-
         public SearchResults<Author> SearchAuthors(string tagName)
         {
             using (SqlConnection conn = Connection)
@@ -67,13 +114,13 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT a.id,
-                                               a.FirstName,
-                                               a.LastName,
-                                               a.Bio
-                                          FROM Author a
-                                               LEFT JOIN AuthorTag at on a.Id = at.AuthorId
-                                               LEFT JOIN Tag t on t.Id = at.TagId
-                                         WHERE t.Name LIKE @name";
+                                       a.FirstName,
+                                       a.LastName,
+                                       a.Bio
+                                  FROM Author a
+                                       LEFT JOIN AuthorTag at on a.Id = at.AuthorId
+                                       LEFT JOIN Tag t on t.Id = at.TagId
+                                 WHERE t.Name LIKE @name";
                     cmd.Parameters.AddWithValue("@name", $"%{tagName}%");
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -97,4 +144,10 @@ namespace TabloidCLI
             }
         }
     }
+
 }
+
+
+
+
+
