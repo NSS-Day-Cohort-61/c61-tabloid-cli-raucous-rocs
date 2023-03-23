@@ -52,26 +52,26 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT a.Id AS BlogId,
-                                               a.Title,
-                                               a.url
-                                             
-                                          FROM Blog a 
-                                         WHERE a.id = @id";
-                                             
-                                              
-                                             
+                    cmd.CommandText = @"SELECT b.Id AS BlogId,
+                                               b.Title,
+                                               b.url,
+                                               t.Id AS TagId,
+                                               t.Name 
+                                          FROM Blog b 
+                                               LEFT JOIN BlogTag AS bt ON b.Id = bt.BlogId
+                                               LEFT JOIN Tag AS t ON bt.TagId = t.Id 
+                                         WHERE b.id = @id";               
 
                     cmd.Parameters.AddWithValue("@id", id);
 
-                    Blog Blog = null;
+                    Blog blog = null;
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        if (Blog == null)
+                        if (blog == null)
                         {
-                            Blog = new Blog()
+                            blog = new Blog()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
@@ -82,7 +82,7 @@ namespace TabloidCLI
 
                         if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
                         {
-                            Blog.Tags.Add(new Tag()
+                            blog.Tags.Add(new Tag()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("TagId")),
                                 Name = reader.GetString(reader.GetOrdinal("Name")),
@@ -92,7 +92,7 @@ namespace TabloidCLI
 
                     reader.Close();
 
-                    return Blog;
+                    return blog;
                 }
             }
         }
