@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TabloidCLI.Models;
+using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -8,27 +9,27 @@ namespace TabloidCLI.UserInterfaceManagers
     {
         private readonly IUserInterfaceManager _parentUI;
         private PostRepository _postRepository;
-        private string _connectionString;
         private AuthorRepository _authorRepository;
-        // private BlogRepository _blogRepository;
+        private BlogRepository _blogRepository;
+        private string _connectionString;
 
         public PostManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
             _postRepository = new PostRepository(connectionString);
-            _connectionString = connectionString;
             _authorRepository = new AuthorRepository(connectionString);
-            //_blogRepository = new BlogRepository(connectionString);
+            _blogRepository = new BlogRepository(connectionString);
+            _connectionString = connectionString;
         }
 
         public IUserInterfaceManager Execute()
         {
             Console.WriteLine("Post Menu");
             Console.WriteLine(" 1) List Posts");
-            //Console.WriteLine(" 2) Post Details");
+            Console.WriteLine(" 2) Post Details");
             Console.WriteLine(" 3) Add Post");
-            //Console.WriteLine(" 4) Edit Post");
-            //Console.WriteLine(" 5) Remove Post");
+            Console.WriteLine(" 4) Edit Post");
+            Console.WriteLine(" 5) Remove Post");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -38,25 +39,25 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     List();
                     return this;
-                //case "2":
-                //    Post post = Choose();
-                //    if (post == null)
-                //    {
-                //        return this;
-                //    }
-                //    else
-                //    {
-                //        return new PostDetailManager(this, _connectionString, post.Id);
-                //    }
+                case "2":
+                    Post post = Choose();
+                    if (post == null)
+                    {
+                        return this;
+                    }
+                    else
+                    {
+                        return new PostDetailManager(this, _connectionString, post.Id);
+                    }
                 case "3":
                     Add();
                     return this;
-                //case "4":
-                //    Edit();
-                //    return this;
-                //case "5":
-                //    Remove();
-                //    return this;
+                case "4":
+                    Edit();
+                    return this;
+                case "5":
+                    Remove();
+                    return this;
                 case "0":
                     return _parentUI;
                 default:
@@ -137,7 +138,6 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             while (enterCorrectDate == false);
 
-            // Could add another do while here if we have time
             Console.WriteLine("Choose an author");
             List<Author> allAuthors = _authorRepository.GetAll();
             foreach (Author thisAuthor in allAuthors)
@@ -150,8 +150,17 @@ namespace TabloidCLI.UserInterfaceManagers
             };
             post.Author = author;
 
-            //list blogs here
-            //List<Blog> allBlogs = blogRepo.GetAll();
+            Console.WriteLine("Choose a blog");
+            List<Blog> allBlogs = _blogRepository.GetAll();
+            foreach (Blog thisBlog in allBlogs)
+            {
+                Console.WriteLine($"{thisBlog.Id} - {thisBlog.Title} {thisBlog.Url}");
+            }
+            Blog Blog = new Blog()
+            {
+                Id = int.Parse(Console.ReadLine())
+            };
+            post.Blog = Blog;
 
             _postRepository.Insert(post);
         }
@@ -179,9 +188,42 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.Url = url;
             }
 
-            // New author selection loop and select here to set to postToEdit
-            // Also blog
+            Console.WriteLine("New author (blank to leave unchanged): ");
+            List<Author> authors = _authorRepository.GetAll();
+            foreach (Author thisAuthor in authors)
+            {
+                Console.WriteLine($"{thisAuthor.Id} - {thisAuthor.FirstName} {thisAuthor.LastName}");
+            }
+            string authorId = (Console.ReadLine());
+            if (!string.IsNullOrWhiteSpace(authorId))
+            {
+                {
+                    Author author = new Author
+                    {
+                        Id = int.Parse(authorId),
+                    };
+                    postToEdit.Author = author;
+                }
+            }
 
+            Console.WriteLine("New blog (blank to leave unchanged): ");
+            List<Blog> blogs = _blogRepository.GetAll();
+            foreach (Blog b in blogs)
+            {
+                Console.WriteLine($"{b.Id} - {b.Title}");
+            }
+
+            string blogId = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(blogId))
+            {
+                {
+                    Blog blog = new Blog
+                    {
+                        Id = int.Parse(blogId),
+                    };
+                    postToEdit.Blog = blog;
+                }
+            }
 
             _postRepository.Update(postToEdit);
         }

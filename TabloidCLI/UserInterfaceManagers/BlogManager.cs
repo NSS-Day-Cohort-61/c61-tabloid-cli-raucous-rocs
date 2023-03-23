@@ -137,7 +137,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 blogToEdit.Url = url;
             }
-            
+
 
             _blogRepository.Update(blogToEdit);
         }
