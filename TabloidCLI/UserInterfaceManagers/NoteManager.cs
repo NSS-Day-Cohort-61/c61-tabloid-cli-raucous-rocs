@@ -51,7 +51,7 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Note> allNotes = _noteRepository.GetAll();
             foreach (Note note in allNotes)
             {
-                if note.Post 
+                if note.Post = 
             }
             Console.WriteLine("All Notes for this post:");
             List<Note> notes = _noteRepository.GetByPost();

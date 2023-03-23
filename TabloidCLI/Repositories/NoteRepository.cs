@@ -6,7 +6,7 @@ using TabloidCLI.Models;
 
 namespace TabloidCLI
 {
-    internal class NoteRepository : DatabaseConnector
+    internal class NoteRepository : DatabaseConnector, IRepository<Note>
     {
         public NoteRepository(string connectionString) : base(connectionString) { }
 
@@ -80,7 +80,7 @@ namespace TabloidCLI
                 }
             }
         }
-        public List<Note> GetByPost(int id)
+        public List<Note> GetAllPerPost(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -151,7 +151,12 @@ namespace TabloidCLI
                 }
             }
         }
-        public void Insert(Note note, Post post)
+
+        public void Get(int id)
+        {
+            return;
+        }
+        public void Insert(Note note)
         {
             using (SqlConnection conn = Connection)
             {
@@ -163,11 +168,16 @@ namespace TabloidCLI
                     cmd.Parameters.AddWithValue("@title", note.Title);
                     cmd.Parameters.AddWithValue("@content", note.Content);
                     cmd.Parameters.AddWithValue("@createDateTime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@postId", post.Id);
+                    //cmd.Parameters.AddWithValue("@postId", post.Id);
 
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public void Update(Note note)
+        {
+            return;
         }
 
         public void Delete(int id)

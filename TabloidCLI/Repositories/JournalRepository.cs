@@ -6,7 +6,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI
 {
-    public class JournalRepository : DatabaseConnector 
+    public class JournalRepository : DatabaseConnector
     {
         public JournalRepository(string connectionString) : base(connectionString) { }
 
@@ -68,35 +68,35 @@ namespace TabloidCLI
         //            Journal journal = null;
 
         //            SqlDataReader reader = cmd.ExecuteReader();
-        //while (reader.Read())
-        //{
-        //    if (journal == null)
-        //    {
-        //        journal = new Journal()
-        //        {
-        //            Id = reader.GetInt32(reader.GetOrdinal("JournalId")),
-        //            Title = reader.GetString(reader.GetOrdinal("Title")),
-        //            Content = reader.GetString(reader.GetOrdinal("Content")),
-        //            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
-        //        };
-        //    }
+        //            while (reader.Read())
+        //            {
+        //                if (journal == null)
+        //                {
+        //                    journal = new Journal()
+        //                    {
+        //                        Id = reader.GetInt32(reader.GetOrdinal("JournalId")),
+        //                        Title = reader.GetString(reader.GetOrdinal("Title")),
+        //                        Content = reader.GetString(reader.GetOrdinal("Content")),
+        //                        CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+        //                    };
+        //                }
 
-        //    if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
-        //    {
-        //        journal.Add(new Tag()
-        //        {
-        //            Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-        //            Name = reader.GetString(reader.GetOrdinal("Name")),
-        //        });
-        //    }
-        //}
-
-        //                    reader.Close();
-
-        //                    return journal;
+        //                if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+        //                {
+        //                    journal.Add(new Tag()
+        //                    {
+        //                        Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+        //                        Name = reader.GetString(reader.GetOrdinal("Name")),
+        //                    });
         //                }
         //            }
+
+        //            reader.Close();
+
+        //            return journal;
         //        }
+        //    }
+        //}
 
         public void Insert(Journal journal)
         {
