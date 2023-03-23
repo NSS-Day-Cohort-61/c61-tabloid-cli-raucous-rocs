@@ -18,12 +18,12 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT n.Id,
-                                            n.Title
+                                            n.Title,
                                             n.Content,
                                             n.CreateDateTime,
                                             n.PostId,
                                             p.URL,
-                                            p.Title AS PostTitle
+                                            p.Title AS PostTitle,
                                             p.PublishDateTime,
                                             p.AuthorId,
                                             p.BlogId,
@@ -88,12 +88,12 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT n.Id,
-                                            n.Title
+                                            n.Title,
                                             n.Content,
                                             n.CreateDateTime,
                                             n.PostId,
                                             p.URL,
-                                            p.Title AS PostTitle
+                                            p.Title AS PostTitle,
                                             p.PublishDateTime,
                                             p.AuthorId,
                                             p.BlogId,
@@ -152,9 +152,9 @@ namespace TabloidCLI
             }
         }
 
-        public void Get(int id)
+        public Note Get(int id)
         {
-            return;
+            throw new NotImplementedException();
         }
         public void Insert(Note note)
         {
@@ -168,7 +168,7 @@ namespace TabloidCLI
                     cmd.Parameters.AddWithValue("@title", note.Title);
                     cmd.Parameters.AddWithValue("@content", note.Content);
                     cmd.Parameters.AddWithValue("@createDateTime", DateTime.Now);
-                    //cmd.Parameters.AddWithValue("@postId", post.Id);
+                    cmd.Parameters.AddWithValue("@postId", note.Post.Id);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -177,12 +177,22 @@ namespace TabloidCLI
 
         public void Update(Note note)
         {
-            return;
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Note WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
     }
