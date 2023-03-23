@@ -27,9 +27,9 @@ namespace TabloidCLI.UserInterfaceManagers
             Blog blog = _blogRepository.Get(_blogId);
             Console.WriteLine($"{blog.Title} Details");
             Console.WriteLine(" 1) View");
-            Console.WriteLine(" 2) View Blog Posts");
-            Console.WriteLine(" 3) Add Tag");
-            Console.WriteLine(" 4) Remove Tag");
+            Console.WriteLine(" 2) view posts");
+            //Console.WriteLine(" 3) Add Tag");
+            //Console.WriteLine(" 4) Remove Tag");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -39,9 +39,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     View();
                     return this;
-                case "2":
-                    ViewBlogDetails();
-                    return this;
+                //case "2":
+                //    ViewBlogDetails();
+                //    return this;
                 //case "3":
                 //    AddTag();
                 //    return this;
@@ -61,23 +61,23 @@ namespace TabloidCLI.UserInterfaceManagers
             Blog blog = _blogRepository.Get(_blogId);
             Console.WriteLine($"Title: {blog.Title}");
             Console.WriteLine($"Url: {blog.Url}");
-            Console.WriteLine("Tags:");
-            foreach (Tag tag in blog.Tags)
-            {
-                Console.WriteLine(" " + tag);
-            }
+            //Console.WriteLine("Tags:");
+            //foreach (Tag tag in blog.Tags)
+            //{
+            //    Console.WriteLine(" " + tag);
+            //}
             Console.WriteLine();
         }
 
-        private void ViewBlogDetails()
-        {
-            List<Blog> blogs = _blogRepository.GetByBlog(_blogId);
-            foreach (Blog blog in blogs)
-            {
-                Console.WriteLine(blog);
-            }
-            Console.WriteLine();
-        }
+        //private void ViewBlogDetails()
+        //{
+        //    List<Blog> blogs = _blogRepository.GetByBlog(_blogId);
+        //    foreach (Blog blog in blogs)
+        //    {
+        //        Console.WriteLine(blog);
+        //    }
+        //    Console.WriteLine();
+        //}
 
         //private void AddTag()
         //{

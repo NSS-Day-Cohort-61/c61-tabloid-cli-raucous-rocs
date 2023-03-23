@@ -53,15 +53,14 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT a.Id AS BlogId,
-                                               a.FirstName,
-                                               a.LastName,
-                                               a.Bio,
-                                               t.Id AS TagId,
-                                               t.Name
+                                               a.Title,
+                                               a.url
+                                             
                                           FROM Blog a 
-                                               LEFT JOIN BlogTag at on a.Id = at.BlogId
-                                               LEFT JOIN Tag t on t.Id = at.TagId
                                          WHERE a.id = @id";
+                                             
+                                              
+                                             
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -81,14 +80,14 @@ namespace TabloidCLI
                             };
                         }
 
-                        if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
-                        {
-                            Blog.Add(new Tag()
-                            {
-                                Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
-                            });
-                        }
+                        //if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        //{
+                        //    Blog.Add(new Tag()
+                        //    {
+                        //        Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                        //        Name = reader.GetString(reader.GetOrdinal("Name")),
+                        //    });
+                        //}
                     }
 
                     reader.Close();
