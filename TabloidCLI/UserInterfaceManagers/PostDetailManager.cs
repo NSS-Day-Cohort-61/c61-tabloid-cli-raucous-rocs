@@ -8,7 +8,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
-    internal class PostDetailManager: IUserInterfaceManager
+    internal class PostDetailManager : IUserInterfaceManager
     {
 
         private IUserInterfaceManager _parentUI;
