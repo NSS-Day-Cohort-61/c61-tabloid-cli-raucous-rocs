@@ -169,5 +169,12 @@ namespace TabloidCLI.Repositories
                 }
             }
         }
+        //public List<Author>GetByAuthors()
+        //{
+        //    using (GetAuthors getAuthors = new GetAuthors())
+        //    {
+        //        return getAuthors.ToList();
+        //    }
+        //}
     }
 }
