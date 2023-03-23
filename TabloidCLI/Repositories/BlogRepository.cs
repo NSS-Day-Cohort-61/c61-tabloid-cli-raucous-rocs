@@ -80,14 +80,14 @@ namespace TabloidCLI
                             };
                         }
 
-                        //if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
-                        //{
-                        //    Blog.Add(new Tag()
-                        //    {
-                        //        Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-                        //        Name = reader.GetString(reader.GetOrdinal("Name")),
-                        //    });
-                        //}
+                        if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        {
+                            Blog.Tags.Add(new Tag()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                            });
+                        }
                     }
 
                     reader.Close();
@@ -151,40 +151,40 @@ namespace TabloidCLI
             }
         }
 
-        
 
-        //        public void InsertTag(Blog Blog, Tag tag)
-        //        {
-        //            using (SqlConnection conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = @"INSERT INTO BlogTag (BlogId, TagId)
-        //                                                       VALUES (@BlogId, @tagId)";
-        //                    cmd.Parameters.AddWithValue("@BlogId", Blog.Id);
-        //                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
 
-        //        public void DeleteTag(int BlogId, int tagId)
-        //        {
-        //            using (SqlConnection conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = @"DELETE FROM BlogTAg 
-        //                                         WHERE BlogId = @Blogid AND 
-        //                                               TagId = @tagId";
-        //                    cmd.Parameters.AddWithValue("@BlogId", BlogId);
-        //                    cmd.Parameters.AddWithValue("@tagId", tagId);
+        public void InsertTag(Blog Blog, Tag tag)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO BlogTag (BlogId, TagId)
+                                                               VALUES (@BlogId, @tagId)";
+                    cmd.Parameters.AddWithValue("@BlogId", Blog.Id);
+                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
+        public void DeleteTag(int BlogId, int tagId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM BlogTag 
+                                                 WHERE BlogId = @Blogid AND 
+                                                       TagId = @tagId";
+                    cmd.Parameters.AddWithValue("@BlogId", BlogId);
+                    cmd.Parameters.AddWithValue("@tagId", tagId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
