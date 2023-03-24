@@ -222,7 +222,7 @@ namespace TabloidCLI
                     cmd.Parameters.AddWithValue("@name", $"%{tagName}%");
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    SearchResults<Post> results = new SearchResults<Blog>();
+                    SearchResults<Post> results = new SearchResults<Post>();
                     while (reader.Read())
                     {
                         Post post = new Post()
