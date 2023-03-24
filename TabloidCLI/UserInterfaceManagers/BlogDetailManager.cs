@@ -31,11 +31,6 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 2) view posts");
             Console.WriteLine(" 3) Add Tag");
             Console.WriteLine(" 4) Remove Tag");
-
-            Console.WriteLine(" 2) View Posts");
-            //Console.WriteLine(" 3) Add Tag");
-            //Console.WriteLine(" 4) Remove Tag");
-
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -147,3 +142,6 @@ namespace TabloidCLI.UserInterfaceManagers
         }
     }
 }
+
+            
+           
