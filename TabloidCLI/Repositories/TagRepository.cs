@@ -41,6 +41,44 @@ namespace TabloidCLI
             }
         }
 
+        public List<Tag> GetAllUsedTags(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT p.Id,
+                                        p.Title,
+                                        p.Url,
+                                        p.PublishDateTime,
+                                        t.Name as TagName, 
+                                        t.id as tagId
+                                    FROM Post p
+                                    JOIN PostTag on PostTag.PostId = P.Id
+                                    JOIN Tag as t on t.Id = PostTag.TagId
+                                   WHERE p.id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    List<Tag> tags = new List<Tag>();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Tag tag = new Tag()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("TagName")),
+                        };
+                        tags.Add(tag);
+                    }
+
+                    reader.Close();
+
+                    return tags;
+                }
+            }
+        }
+
         public Tag Get(int id)
         {
             //using (SqlConnection conn = Connection)
