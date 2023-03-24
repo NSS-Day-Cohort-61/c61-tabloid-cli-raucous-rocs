@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using TabloidCLI.Models;
@@ -69,6 +70,11 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"Title: {post.Title}");
             Console.WriteLine($"URL: {post.Url}");
             Console.WriteLine($"Date Published: {post.PublishDateTime}");
+            Console.WriteLine("Tags:");
+            foreach (Tag tag in post.Tags)
+            {
+                Console.WriteLine(" " + tag);
+            }
             Console.WriteLine();
         }
 
@@ -103,8 +109,8 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Post post = _postRepository.Get(_postId);
 
-            Console.WriteLine($"Which tag would you like to remove from {post.Id}?");
-            List<Tag> tags = _tagRepository.GetAll();
+            Console.WriteLine($"Which tag would you like to remove from {post.Title}?");
+            List<Tag> tags = _tagRepository.GetAllUsedTags(post.Id);
 
             for (int i = 0; i < tags.Count; i++)
             {
@@ -118,7 +124,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 int choice = int.Parse(input);
                 Tag tag = tags[choice - 1];
-                _authorRepository.DeleteTag(post.Id, tag.Id);
+                _postRepository.DeleteTag(post, tag);
             }
             catch (Exception)
             {
