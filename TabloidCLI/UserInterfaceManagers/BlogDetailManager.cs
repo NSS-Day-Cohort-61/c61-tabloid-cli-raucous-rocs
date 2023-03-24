@@ -28,8 +28,8 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"{blog.Title} Details");
             Console.WriteLine(" 1) View");
             Console.WriteLine(" 2) view posts");
-            //Console.WriteLine(" 3) Add Tag");
-            //Console.WriteLine(" 4) Remove Tag");
+            Console.WriteLine(" 3) Add Tag");
+            Console.WriteLine(" 4) Remove Tag");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -137,3 +137,6 @@ namespace TabloidCLI.UserInterfaceManagers
         }
     }
 }
+
+            
+           
